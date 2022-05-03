@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Список студентов</title>
+</head>
+
+<body>
+    <h1>Список студентов</h1>
+    <div id="app">
+        <div>
+            <table class="table-students">
+                <tr>
+                    <td class="sort-number-group" @click="sortNumberGroup">группа</td>
+                    <td>фамилия</td>
+                    <td>имя</td>
+                    <td>отчество</td>
+                    <td>пол</td>
+                    <td>дата рождения</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="students" v-for="(item, index) in students">
+                    <td>{{ item.numberGroup }}</td>
+                    <td>{{ item.lastname }}</td>
+                    <td>{{ item.firstName }}</td>
+                    <td>{{ item.midleName }}</td>
+                    <td>{{ item.gender }}</td>
+                    <td>{{ item.date }}</td>
+                    <!-- <td>{{ index }}</td> -->
+                    <td>
+                        <button class="btn-edit-student" @click="editStudent(index)">изменить</button>
+                    </td>
+                    <td>
+                        <button class="btn-del-student" @click="delStudent(index)" >удалить</button>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+        </div>
+        <form action="#" class="add-students-form" onsubmit="event.preventDefault()">
+            <div>
+                <label for="firstName">Имя</label>
+                <input type="text" name="firstName" v-model="firstName">
+            </div>
+            <div>
+                <label for="midleName">Отчество</label>
+                <input type="text" name="midleName" v-model="midleName">
+            </div>
+            <div>
+                <label for="lastname">Фамилия</label>
+                <input type="text" name="lastname" v-model="lastname">
+            </div>
+            <div>
+                <label for="numberGroup">номер группы</label>
+                <input type="text" name="numberGroup" v-model="numberGroup">
+            </div>
+            <div>
+                <label for="gender">пол</label>
+                <input type="text" name="gender" v-model="gender">
+            </div>
+            <div>
+                <label for="date">дата рождения</label>
+                <input type="text" name="date" v-model="date">
+            </div>
+            <button class="btn-add-student" @click="addStudent" >добавить студента</button>
+        </form>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./App.js"></script>
+</body>
+
+</html>
