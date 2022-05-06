@@ -7,7 +7,8 @@ const App = {
         midleName: "",
         lastname: "",
         gender: "",
-        date: "",
+        date: "yyyy-MM-dd",
+        isStatus: false,
         students: [
           {
             firstName: "Aleksandr",
@@ -15,7 +16,7 @@ const App = {
             lastname: "Tugolukov",
             numberGroup: "1330",
             gender: "male",
-            date: "01.01.2022"
+            date: "2022-05-26"
           },
           {
             firstName: "Vasya",
@@ -23,22 +24,14 @@ const App = {
             lastname: "Ivanov",
             numberGroup: "1122",
             gender: "famale",
-            date: "01.01.2022"
+            date: "2022-05-26"
           },{
             firstName: "Nikita",
             midleName: "Sergeevich",
             lastname: "Minin",
             numberGroup: "1222",
             gender: "male",
-            date: "01.01.2022"
-          },
-          {
-            firstName: "Misha",
-            midleName: "Petrovich",
-            lastname: "Dyatlov",
-            numberGroup: "1233",
-            gender: "male",
-            date: "01.01.2022"
+            date: "2022-05-26"
           }
         ]
       }
@@ -48,16 +41,36 @@ const App = {
         console.log("Удалили студента с индексом" ,index);
         this.students.splice(index, 1)
       },
+      //выделить студента
+      targetStudent(index){
+        let student = this.students[index];
+        console.log(student);
+        this.firstName = student.firstName;
+        this.midleName = student.midleName;
+        this.lastname = student.lastname;
+        this.numberGroup = student.numberGroup;
+        this.gender = student.gender;
+        this.date = student.date;
+        // this.isStatus = true;
+      },
+
       //изменяет студента
       editStudent(index){
         let student = this.students[index];
-        console.log(student.firstName);
         student.firstName = this.firstName;
         student.midleName = this.midleName;
         student.lastname = this.lastname;
         student.numberGroup = this.numberGroup;
         student.gender = this.gender;
         student.date = this.date;
+        this.firstName = "";
+        this.midleName = "";
+        this.lastname = "";
+        this.numberGroup = "";
+        this.gender = "";
+        this.date = "";
+        this.isStatus = false;
+        console.log(this.students);
       },
       addStudent(){
         // console.log("hello");
@@ -97,6 +110,7 @@ const App = {
         }
         // console.log(this.revers);
       },
+
       // Сортировка по фамилии
       sortLastName(){
         let student = this.students;
