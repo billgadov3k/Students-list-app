@@ -8,7 +8,7 @@ const App = {
         lastname: "",
         gender: "",
         date: "yyyy-MM-dd",
-        isStatus: false,
+        status: true,
         students: [
           {
             firstName: "Aleksandr",
@@ -16,7 +16,8 @@ const App = {
             lastname: "Tugolukov",
             numberGroup: "1330",
             gender: "male",
-            date: "2022-05-26"
+            date: "2022-05-26",
+            status: false
           },
           {
             firstName: "Vasya",
@@ -24,14 +25,17 @@ const App = {
             lastname: "Ivanov",
             numberGroup: "1122",
             gender: "famale",
-            date: "2022-05-26"
-          },{
+            date: "2022-05-26",
+            status: false
+          },
+          {
             firstName: "Nikita",
             midleName: "Sergeevich",
             lastname: "Minin",
             numberGroup: "1222",
             gender: "male",
-            date: "2022-05-26"
+            date: "2022-05-26",
+            status: false
           }
         ]
       }
@@ -44,14 +48,15 @@ const App = {
       //выделить студента
       targetStudent(index){
         let student = this.students[index];
-        console.log(student);
+        // console.log(student);
         this.firstName = student.firstName;
         this.midleName = student.midleName;
         this.lastname = student.lastname;
         this.numberGroup = student.numberGroup;
         this.gender = student.gender;
         this.date = student.date;
-        // this.isStatus = true;
+        this.students[index].status = true;
+        
       },
 
       //изменяет студента
@@ -69,8 +74,7 @@ const App = {
         this.numberGroup = "";
         this.gender = "";
         this.date = "";
-        this.isStatus = false;
-        console.log(this.students);
+        this.students[index].status = false;
       },
       addStudent(){
         // console.log("hello");

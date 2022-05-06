@@ -25,7 +25,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr class="students" v-for="(item, index) in students" v-bind:class="{status : isStatus}">
+                <tr class="students" v-for="(item, index) in students" v-bind:class="{status : students[index].status}">
                     <td>{{ item.numberGroup }}</td>
                     <td>{{ item.lastname }}</td>
                     <td>{{ item.firstName }}</td>
