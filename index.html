@@ -24,11 +24,11 @@
             <table class="table-students">
                 <tr>
                     <td class="sort-number-group" @click="sortNumberGroup">группа</td>
-                    <td class="sort-lastname-group" @click="sortLastName">фамилия</td>
+                    <td class="sort-lastname" @click="sortLastName">фамилия</td>
                     <td>имя</td>
                     <td>отчество</td>
                     <td>пол</td>
-                    <td>дата рождения</td>
+                    <td class="sort-date" @click="sortDate">дата рождения</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -74,7 +74,12 @@
                 </div>
                 <div>
                     <label for="gender">пол</label>
-                    <input type="text" name="gender" v-model="gender">
+                    <!-- <input type="text" name="gender" v-model="gender"> -->
+                    <select name="gender" v-model="gender">
+                        <option disabled selected value> -- выберете пол -- </option>
+                        <option>мужской</option>
+                        <option>женский</option>
+                      </select>
                 </div>
                 <div>
                     <label for="date">дата рождения</label>

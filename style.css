@@ -41,7 +41,7 @@ tr.status {
 }
 
 .input-lastname-search {
-    width: 33%;
+    width: 20%;
     margin-right: 5px;
 }
 
@@ -49,4 +49,18 @@ tr.status {
     width: 10%;
     margin-right: 10px;
 }
+
+.sort-number-group:hover {
+    cursor: pointer;
+    color: brown;
+}
+
+.sort-lastname:hover {
+    cursor: pointer;
+    color: brown;
+}
+
+.sort-date:hover {
+    cursor: pointer;
+    color: brown;
 }

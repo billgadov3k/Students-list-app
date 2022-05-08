@@ -7,7 +7,7 @@ const App = {
         midleName: "",
         lastname: "",
         gender: "",
-        date: "yyyy-mm-dd",
+        date: new Date("yyyy-MM-dd"),
         inputSearchLastname: "",
         inputSearchGroup: "",
         students: [
@@ -17,7 +17,7 @@ const App = {
             lastname: "Tugolukov",
             numberGroup: "1330",
             gender: "male",
-            date: "2022-05-26",
+            date: "1985-12-26",
             status: false,
             filter: true
           },
@@ -27,7 +27,7 @@ const App = {
             lastname: "Ivanov",
             numberGroup: "1122",
             gender: "famale",
-            date: "2022-05-26",
+            date: "2001-05-10",
             status: false,
             filter: true
           },
@@ -37,7 +37,7 @@ const App = {
             lastname: "Minin",
             numberGroup: "1222",
             gender: "male",
-            date: "2022-05-26",
+            date: "2020-06-10",
             status: false,
             filter: true
           }
@@ -87,23 +87,28 @@ const App = {
       //добавить студента
       addStudent(){
         // console.log("hello");
-        this.students.push(
-          {
-            firstName: this.firstName,
-            midleName: this.midleName,
-            lastname: this.lastname,
-            numberGroup: this.numberGroup,
-            gender: this.gender,
-            date: this.date,
-            filter: true
-          }
-        )
-        this.firstName = "";
-        this.midleName = "";
-        this.lastname = "";
-        this.numberGroup = "";
-        this.gender = "";
-        this.date = "";
+        if (this.firstName == "" || this.midleName == "" || this.lastname == "" ||
+        this.numberGroup == "" || this.gender == "" || this.date == ""){
+
+        } else {
+          this.students.push(
+            {
+              firstName: this.firstName,
+              midleName: this.midleName,
+              lastname: this.lastname,
+              numberGroup: this.numberGroup,
+              gender: this.gender,
+              date: this.date,
+              filter: true
+            }
+          )
+          this.firstName = "";
+          this.midleName = "";
+          this.lastname = "";
+          this.numberGroup = "";
+          this.gender = "";
+          this.date = "";
+        }
       },
 
       //поиск студента
@@ -119,6 +124,17 @@ const App = {
           } else {
             this.students[i].filter = false
           }
+        }
+      },
+      //сортировка по дате
+      sortDate(){
+        let student = this.students;
+        if (this.revers) {
+          student.sort((a, b) => a.date > b.date ? 1 : -1);
+          this.revers = !this.revers;
+        } else {
+          student.sort((a, b) => a.date < b.date ? 1 : -1);
+          this.revers = !this.revers;
         }
       },
       //сортировка по номеру группы
