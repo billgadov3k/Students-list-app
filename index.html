@@ -12,6 +12,14 @@
 <body>
     <h1>Список студентов</h1>
     <div id="app">
+        <div class="stud-search">
+            <form action="#" class="search" onsubmit="event.preventDefault()">
+                <input type="text" class="input-lastname-search" placeholder="фамилия" v-model="inputSearchLastname">
+                <input type="number" class="input-group-search" placeholder="группа" v-model="inputSearchGroup">
+                <button class="btn-filter" @click="addSearch" >найти студента</button>
+            <hr>
+            </form>
+        </div>
         <div class="table-students-block">
             <table class="table-students">
                 <tr>
@@ -25,21 +33,22 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr class="students" v-for="(item, index) in students" v-bind:class="{status : students[index].status}">
-                    <td>{{ item.numberGroup }}</td>
-                    <td>{{ item.lastname }}</td>
-                    <td>{{ item.firstName }}</td>
-                    <td>{{ item.midleName }}</td>
-                    <td>{{ item.gender }}</td>
-                    <td>{{ item.date }}</td>
+                <tr class="students"
+                v-for="(item, index) in students" v-bind:class="{status : students[index].status}">
+                    <td v-if="students[index].filter">{{ item.numberGroup }}</td>
+                    <td v-if="students[index].filter">{{ item.lastname }}</td>
+                    <td v-if="students[index].filter">{{ item.firstName }}</td>
+                    <td v-if="students[index].filter">{{ item.midleName }}</td>
+                    <td v-if="students[index].filter">{{ item.gender }}</td>
+                    <td v-if="students[index].filter">{{ item.date }}</td>
                     <!-- <td>{{ index }}</td> -->
-                    <td>
+                    <td v-if="students[index].filter">
                         <button class="btn-edit-student" @click="targetStudent(index)">изменить</button>
                     </td>
-                    <td>
+                    <td v-if="students[index].filter">
                         <button class="btn-edit-student" @click="editStudent(index)">сохранить</button>
                     </td>
-                    <td>
+                    <td v-if="students[index].filter">
                         <button class="btn-del-student" @click="delStudent(index)" >удалить</button>
                     </td>
                 </tr>

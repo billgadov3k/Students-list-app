@@ -2,13 +2,14 @@ const App = {
     data() {
       return {
         revers: true,
-        numberGroup: 0,
+        numberGroup: null,
         firstName: "",
         midleName: "",
         lastname: "",
         gender: "",
-        date: "yyyy-MM-dd",
-        status: true,
+        date: "yyyy-mm-dd",
+        inputSearchLastname: "",
+        inputSearchGroup: "",
         students: [
           {
             firstName: "Aleksandr",
@@ -17,7 +18,8 @@ const App = {
             numberGroup: "1330",
             gender: "male",
             date: "2022-05-26",
-            status: false
+            status: false,
+            filter: true
           },
           {
             firstName: "Vasya",
@@ -26,7 +28,8 @@ const App = {
             numberGroup: "1122",
             gender: "famale",
             date: "2022-05-26",
-            status: false
+            status: false,
+            filter: true
           },
           {
             firstName: "Nikita",
@@ -35,7 +38,8 @@ const App = {
             numberGroup: "1222",
             gender: "male",
             date: "2022-05-26",
-            status: false
+            status: false,
+            filter: true
           }
         ]
       }
@@ -48,7 +52,6 @@ const App = {
       //выделить студента
       targetStudent(index){
         let student = this.students[index];
-        // console.log(student);
         this.firstName = student.firstName;
         this.midleName = student.midleName;
         this.lastname = student.lastname;
@@ -59,23 +62,29 @@ const App = {
         
       },
 
-      //изменяет студента
+      //изменяет студента (кнопка сохранить)
       editStudent(index){
         let student = this.students[index];
-        student.firstName = this.firstName;
-        student.midleName = this.midleName;
-        student.lastname = this.lastname;
-        student.numberGroup = this.numberGroup;
-        student.gender = this.gender;
-        student.date = this.date;
-        this.firstName = "";
-        this.midleName = "";
-        this.lastname = "";
-        this.numberGroup = "";
-        this.gender = "";
-        this.date = "";
-        this.students[index].status = false;
+        if(this.firstName !== "" ){
+          student.firstName = this.firstName;
+          student.midleName = this.midleName;
+          student.lastname = this.lastname;
+          student.numberGroup = this.numberGroup;
+          student.gender = this.gender;
+          student.date = this.date;
+          this.firstName = "";
+          this.midleName = "";
+          this.lastname = "";
+          this.numberGroup = "";
+          this.gender = "";
+          this.date = "";
+          this.students[index].status = false;
+        } else {
+          this.students[index].status = false;
+        }
       },
+
+      //добавить студента
       addStudent(){
         // console.log("hello");
         this.students.push(
@@ -85,7 +94,8 @@ const App = {
             lastname: this.lastname,
             numberGroup: this.numberGroup,
             gender: this.gender,
-            date: this.date
+            date: this.date,
+            filter: true
           }
         )
         this.firstName = "";
@@ -96,6 +106,21 @@ const App = {
         this.date = "";
       },
 
+      //поиск студента
+      addSearch(){
+        let searchVol = this.inputSearchLastname;
+        let searchVolGroup = this.inputSearchGroup;
+        let students = this.students;
+        for(i = 0; i < students.length; i++){
+          if( (students[i].lastname).toUpperCase().includes(searchVol.toUpperCase())
+              && (students[i].numberGroup).includes(searchVolGroup)) {
+            console.log(students[i].lastname, students[i].numberGroup);
+            this.students[i].filter = true
+          } else {
+            this.students[i].filter = false
+          }
+        }
+      },
       //сортировка по номеру группы
       sortNumberGroup(){
         let student = this.students;
@@ -128,6 +153,8 @@ const App = {
         // console.log(student);
         // console.log(this.revers);
       },
+    },
+    computed: {
     }
   }
 

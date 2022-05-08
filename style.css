@@ -31,11 +31,22 @@ tr.status {
 }
 
 .btn-del-student {
-    border: 2px solid rgb(255, 40, 40);
+    border: 2px solid rgb(221, 26, 26);
     border-radius: 5px;
-    background-color: rgb(255, 136, 136);
+    background-color: rgb(255, 57, 57);
 }
 
 .btn-del-student:hover {
     background-color: rgb(254, 92, 92);
+}
+
+.input-lastname-search {
+    width: 33%;
+    margin-right: 5px;
+}
+
+.input-group-search {
+    width: 10%;
+    margin-right: 10px;
+}
 }
