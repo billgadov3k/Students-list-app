@@ -7,7 +7,7 @@ const App = {
         midleName: "",
         lastname: "",
         gender: "",
-        date: new Date("yyyy-MM-dd"),
+        date: new Date("YYYY-MM-DD"),
         inputSearchLastname: "",
         inputSearchGroup: "",
         students: [
@@ -16,8 +16,8 @@ const App = {
             midleName: "Vladimirovich",
             lastname: "Tugolukov",
             numberGroup: "1330",
-            gender: "male",
-            date: "1985-12-26",
+            gender: "муской",
+            date: "2005-02-10",
             status: false,
             filter: true
           },
@@ -26,8 +26,18 @@ const App = {
             midleName: "Gennadievich",
             lastname: "Ivanov",
             numberGroup: "1122",
-            gender: "famale",
+            gender: "муской",
             date: "2001-05-10",
+            status: false,
+            filter: true
+          },
+          {
+            firstName: "Oksana",
+            midleName: "Viktorovna",
+            lastname: "Sinicina",
+            numberGroup: "1144",
+            gender: "женский",
+            date: "1995-06-21",
             status: false,
             filter: true
           },
@@ -36,7 +46,7 @@ const App = {
             midleName: "Sergeevich",
             lastname: "Minin",
             numberGroup: "1222",
-            gender: "male",
+            gender: "мужской",
             date: "2020-06-10",
             status: false,
             filter: true
@@ -65,28 +75,29 @@ const App = {
       //изменяет студента (кнопка сохранить)
       editStudent(index){
         let student = this.students[index];
-        if(this.firstName !== "" ){
+        if (this.firstName == "" || this.midleName == "" || this.lastname == "" ||
+        this.numberGroup == "" || this.gender == "" || this.date == ""){
+          this.students[index].status = false;
+        } else {
           student.firstName = this.firstName;
           student.midleName = this.midleName;
           student.lastname = this.lastname;
           student.numberGroup = this.numberGroup;
           student.gender = this.gender;
           student.date = this.date;
-          this.firstName = "";
+          this.students[index].status = false;
+        }
+        this.firstName = "";
           this.midleName = "";
           this.lastname = "";
           this.numberGroup = "";
           this.gender = "";
           this.date = "";
-          this.students[index].status = false;
-        } else {
-          this.students[index].status = false;
-        }
       },
 
       //добавить студента
       addStudent(){
-        // console.log("hello");
+        //проверка на заполненность полей (добавлять когда все заполнены)
         if (this.firstName == "" || this.midleName == "" || this.lastname == "" ||
         this.numberGroup == "" || this.gender == "" || this.date == ""){
 
@@ -153,7 +164,6 @@ const App = {
           this.students = student;
           this.revers = !this.revers;
         }
-        // console.log(this.revers);
       },
 
       // Сортировка по фамилии
@@ -166,8 +176,6 @@ const App = {
           student.sort((a, b) => a.lastname < b.lastname ? 1 : -1);
           this.revers = !this.revers;
         }
-        // console.log(student);
-        // console.log(this.revers);
       },
     },
     computed: {

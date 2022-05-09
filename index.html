@@ -56,36 +56,37 @@
         </div>
         <div class="form-block">
             <form action="#" class="add-students-form" onsubmit="event.preventDefault()">
-                <div>
-                    <label for="firstName">Имя</label>
+                <div class="div-label-form">
+                    <label class="label-form" for="firstName">Имя</label>
                     <input type="text" name="firstName" v-model="firstName">
                 </div>
-                <div>
-                    <label for="midleName">Отчество</label>
+                <div class="div-label-form">
+                    <label class="label-form" for="midleName">Отчество</label>
                     <input type="text" name="midleName" v-model="midleName">
                 </div>
-                <div>
-                    <label for="lastname">Фамилия</label>
+                <div class="div-label-form">
+                    <label class="label-form" for="lastname">Фамилия</label>
                     <input type="text" name="lastname" v-model="lastname">
                 </div>
-                <div>
-                    <label for="numberGroup">номер группы</label>
+                <div class="div-label-form">
+                    <label class="label-form" for="numberGroup">Номер группы</label>
                     <input type="text" name="numberGroup" v-model="numberGroup">
                 </div>
-                <div>
-                    <label for="gender">пол</label>
+                <div class="div-label-form">
+                    <label class="label-form" for="gender">Пол</label>
                     <!-- <input type="text" name="gender" v-model="gender"> -->
                     <select name="gender" v-model="gender">
                         <option disabled selected value> -- выберете пол -- </option>
                         <option>мужской</option>
                         <option>женский</option>
                       </select>
-                </div>
+                </div class="div-label-form">
                 <div>
-                    <label for="date">дата рождения</label>
+                    <label class="label-form" for="date">Дата рождения</label>
                     <input type="date" name="date" v-model="date">
                 </div>
                 <button class="btn-add-student" @click="addStudent" >добавить студента</button>
+                <hr>
             </form>
         </div>
     </div>
