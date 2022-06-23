@@ -36,9 +36,14 @@ tr.status {
     background-color: rgb(249, 44, 44);
 }
 
+.form_search__input {
+    width: 300px;
+}
+
 .input-lastname-search {
     width: 200px;
     margin-right: 5px;
+    margin-left: 20px;
 }
 
 .input-group-search {

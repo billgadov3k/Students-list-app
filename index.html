@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,14 +9,16 @@
 </head>
 
 <body>
-    <h1>Список студентов</h1>
+
     <div id="app">
         <div class="stud-search">
             <form action="#" class="search" onsubmit="event.preventDefault()">
+                <p>студентов: {{students.length}}</p>
+                <input type="text" class="form_search__input" placeholder="поиск" v-model="inputSearch">
                 <input type="text" class="input-lastname-search" placeholder="фамилия" v-model="inputSearchLastname">
                 <input type="number" class="input-group-search" placeholder="группа" v-model="inputSearchGroup">
-                <button class="btn-filter" @click="addSearch" >найти студента</button>
-            <hr>
+                <button class="btn-filter" @click="">найти студента</button>
+                <hr>
             </form>
         </div>
         <div class="table-students-block">
@@ -33,14 +34,14 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr class="students"
-                v-for="(item, index) in students" v-bind:class="{status : students[index].status}">
-                    <td v-if="students[index].filter">{{ item.numberGroup }}</td>
-                    <td v-if="students[index].filter">{{ item.lastname }}</td>
-                    <td v-if="students[index].filter">{{ item.firstName }}</td>
-                    <td v-if="students[index].filter">{{ item.midleName }}</td>
-                    <td v-if="students[index].filter">{{ item.gender }}</td>
-                    <td v-if="students[index].filter">{{ item.date }}</td>
+                <tr class="students" v-for="(item, index) in inputSearchStudent" :key="item.id"
+                    v-bind:class="{status : students[index].status}">
+                    <td>{{ item.numberGroup }}</td>
+                    <td>{{ item.lastname }}</td>
+                    <td>{{ item.firstName }}</td>
+                    <td>{{ item.midleName }}</td>
+                    <td>{{ item.gender }}</td>
+                    <td>{{ item.date }}</td>
                     <!-- <td>{{ index }}</td> -->
                     <td v-if="students[index].filter">
                         <button class="btn-edit-student" @click="targetStudent(index)">изменить</button>
@@ -49,7 +50,7 @@
                         <button class="btn-edit-student" @click="editStudent(index)">сохранить</button>
                     </td>
                     <td v-if="students[index].filter">
-                        <button class="btn-del-student" @click="delStudent(index)" >удалить</button>
+                        <button class="btn-del-student" @click="delStudent(index)">удалить</button>
                     </td>
                 </tr>
             </table>
@@ -58,7 +59,7 @@
             <form action="#" class="add-students-form" onsubmit="event.preventDefault()">
                 <div class="div-label-form">
                     <label class="label-form" for="firstName">Имя</label>
-                    <input type="text" name="firstName" v-model="firstName">
+                    <input id="firstName" type="text" name="firstName" v-model="firstName">
                 </div>
                 <div class="div-label-form">
                     <label class="label-form" for="midleName">Отчество</label>
@@ -77,15 +78,16 @@
                     <!-- <input type="text" name="gender" v-model="gender"> -->
                     <select name="gender" v-model="gender">
                         <option disabled selected value> -- выберете пол -- </option>
-                        <option>мужской</option>
-                        <option>женский</option>
-                      </select>
+                        <option value="male">мужской</option>
+                        <option value="female">женский</option>
+                    </select>
                 </div class="div-label-form">
                 <div>
                     <label class="label-form" for="date">Дата рождения</label>
                     <input type="date" name="date" v-model="date">
                 </div>
-                <button class="btn-add-student" @click="addStudent" >добавить студента</button>
+                <button class="btn-add-student" @click="addStudent">добавить студента</button>
+                <button class="btn-edit-student" @click="testStud()">сохранить</button>
                 <hr>
             </form>
         </div>
